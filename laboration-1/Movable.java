@@ -21,4 +21,8 @@ public interface Movable {
     int getX();
 
     int getY();
+
+    void setXY(int[] x);
+
+    void setY(int y);
 }

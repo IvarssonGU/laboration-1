@@ -15,7 +15,7 @@ public class Saab95 extends Car implements Movable{
      * The only constructor for this class, which is hard-coded to always create a Saab95, as the class-name implies.
      */
     public Saab95(){
-        super(2, 125, 0, Color.red, "Saab95");
+        super(12, 125, 0, Color.red, "Saab95", true);
         turboOn = false;
         stopEngine();
     }
