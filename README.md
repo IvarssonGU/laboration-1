@@ -1,3 +1,3 @@
-# laboration-1
-laboration-1
-första delen av labben :)
+# laboration-1B
+laboration-1B
+Andra delen av labben :)
