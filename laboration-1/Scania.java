@@ -3,12 +3,12 @@ import java.awt.*;
 /**
  * A class that extends <i>Car</i> and implements the <i>Movable</i> interface.
  */
-public class Scania extends CargoHolder implements Movable{
+public class Scania extends Truck {
     /**
      * The only constructor for this class, which is hard-coded to always create a Scania, as the class-name implies.
      */
     public Scania(){
-        super(10, 2, 1200, 0, Color.white, "Scania R730 Streamline", false);
+        super(2, 1200, 0, Color.white, "Scania R730 Streamline");
         stopEngine();
     }
 
@@ -37,6 +37,4 @@ public class Scania extends CargoHolder implements Movable{
             super.gas(amount);
         }
     }
-
-
 }

@@ -1,7 +1,7 @@
 /**
  * An interface that forces the following methods to be defined.
  */
-public interface Movable {
+public interface Movable extends IPostionable {
 
     /**
      * A method intended to change object position, and thereby move the Movable object.
@@ -18,11 +18,4 @@ public interface Movable {
      */
     void turnRight();
 
-    int getX();
-
-    int getY();
-
-    void setXY(int[] x);
-
-    void setY(int y);
 }

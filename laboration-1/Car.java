@@ -18,11 +18,9 @@ public abstract class Car implements Movable {
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private final String modelName; // The car model name
-    //public int x;
-    //public int y;
-    private int[] xy;
+    private int x;
+    private int y;
     private int dir;
-    public final boolean personBil;
 
     /**
      * A constructor for the <i>Car</i> class.
@@ -32,23 +30,23 @@ public abstract class Car implements Movable {
      * @param currentSpeed - The current speed of the car
      * @param color - The color of the car
      * @param modelName - The name of the model
+     * @param x - The x coordinate
+     * @param y - The y coordinate
+     * @param dir - The direction
      */
 
-    public Car () {
-        this(0, 0.0,0.0, null,null, false);
-        xy = new int[2];
-    }
 
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, boolean personbiel) {
+    /**
+     * A car constructor that subclasses inherits.
+     */
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
-        this.personBil = personbiel;
-        //x = 0;
-        //y = 0;
-        xy = new int[2];
+        x = 0;
+        y = 0;
     }
 
     /**
@@ -129,7 +127,7 @@ public abstract class Car implements Movable {
      * @return - It returns the pixel value at the x.
      */
     public int getX() {
-        return xy[0];
+        return x;
     }
 
     /**
@@ -137,20 +135,13 @@ public abstract class Car implements Movable {
      * @return - It returns the pixel value at the y.
      */
     public int getY(){
-        return xy[1];
+        return y;
     }
 
-    public void setX(int newx) { xy[0] = newx; }
+    public void setX(int newx) { x = newx; }
 
-    public void setY(int newy) { xy[1] = newy; }
+    public void setY(int newy) { y = newy; }
 
-    public void setXY(int[] newxy) {
-        xy = newxy;
-    }
-
-    public int[] getXY(){
-        return xy;
-    }
     /**
      * This method increase the car speed with amount speed.
      * @param amount
@@ -173,7 +164,6 @@ public abstract class Car implements Movable {
      * @param amount - The amount the method should increase the speed.
      */
 
-    // TODO fix this method according to lab pm
     public void gas(double amount){
         if (0 <= amount && amount <= 1) {
             incrementSpeed(amount);
@@ -185,7 +175,6 @@ public abstract class Car implements Movable {
      *
      * @param amount - The amount to brake with
      */
-    // TODO fix this method according to lab pm
     public void brake(double amount){
         if (0 <= amount && amount <= 1) {
             decrementSpeed(amount);
@@ -197,13 +186,13 @@ public abstract class Car implements Movable {
      */
     public void move(){
         if (dir == 0) {
-            xy[1] += (int) currentSpeed;
+            y += (int) currentSpeed;
         } else if (dir == 1) {
-            xy[0] -= (int) currentSpeed;
+            x -= (int) currentSpeed;
         } else if (dir == 2) {
-            xy[1] -= (int) currentSpeed;
+            y -= (int) currentSpeed;
         } else {
-            xy[0] += (int) currentSpeed;
+            x += (int) currentSpeed;
         }
     }
 

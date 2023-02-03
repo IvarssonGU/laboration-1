@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +12,7 @@ public class CarTest {
     Volvo240 volvo;
 
     Scania scania;
-    Car_Transporter car_transporter;
+    Car_Transporter<Personal_Car> car_transporter;
 
     Workshop<Saab95> saabWorkshop;
     Workshop<Car> verkstadCar;
@@ -24,8 +23,8 @@ public class CarTest {
         volvo = new Volvo240();
         scania = new Scania();
         car_transporter = new Car_Transporter(10);
-        saabWorkshop = new Workshop<>(10);
-        verkstadCar = new Workshop<>(10);
+        saabWorkshop = new Workshop<>(10,0,0);
+        verkstadCar = new Workshop<>(10, 0, 0);
     }
 
     @After
@@ -214,7 +213,7 @@ public class CarTest {
 
     @Test
     public void onlySaabs() {
-        //verkstadSaab.recieveCar(volvo); -gives a static error!
+        //verkstadSaab.unLoadCar(volvo); -gives a static error!
         saabWorkshop.loadCar(saab);
         assert(saabWorkshop.unLoadCar() == saab);
     }
@@ -225,7 +224,7 @@ public class CarTest {
         car_transporter.loadCar(volvo);
         car_transporter.loadCar(saab);
         car_transporter.unLoadCar();
-        assert(car_transporter.getCarSize() == 1);
+        assert(car_transporter.getCars().size() == 1);
     }
 
     @Test
@@ -247,7 +246,6 @@ public class CarTest {
         car_transporter.downTrailer();
         car_transporter.unLoadCar();
         assert((volvo.getX() == car_transporter.getX()) && (volvo.getY() == car_transporter.getY()));
-
     }
 
     @Test
@@ -264,7 +262,7 @@ public class CarTest {
         verkstadCar.loadCar(volvo);
         verkstadCar.loadCar(scania);
         verkstadCar.loadCar(car_transporter);
-        assert(verkstadCar.getCarSize() == 4);
+        assert(verkstadCar.getCars().size() == 4);
     }
 
     @Test
@@ -281,7 +279,7 @@ public class CarTest {
         verkstadCar.loadCar(saab);
         verkstadCar.loadCar(volvo);
         verkstadCar.loadCar(car_transporter);
-        assert(verkstadCar.getCarSize() == 10);
+        assert(verkstadCar.getCars().size() == 10);
     }
 
 

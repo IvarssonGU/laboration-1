@@ -1,9 +1,7 @@
-import javax.swing.text.Position;
+
 import java.awt.*;
-import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Random;
-import java.util.Stack;
+
 
 /**
  * An abstract class that implements <i>Movable</i> and extends car, and adds more more specific methods and functionality.
@@ -12,14 +10,16 @@ import java.util.Stack;
  *     <i>Very good class, not abstract!</i>
  * </p>
  */
-public class Car_Transporter extends CargoHolder {
+public class Car_Transporter <T extends Personal_Car> extends Truck implements IPostionable {
+    private final CargoHolder<T> cargoHolder;
 
     /**
      * A constructor for the <i>Car</i> class.
      * Passes most constructor-values to its superclass, Car, but also adds some values unique to this class!
      */
-    public Car_Transporter (int capacity){
-        super(10, 2, 500, 0, Color.yellow, "Herpa -Scania CS 20 HD halvsläpvagn X pendel med interdolly Esser tung transport (Nordrhein-Westfalen/Würselen)", false);
+    public Car_Transporter (int capacity) {
+        super(2, 500, 0, Color.yellow, "Herpa -Scania CS 20 HD halvsläpvagn X pendel med interdolly Esser tung transport (Nordrhein-Westfalen/Würselen)");
+        this.cargoHolder = new CargoHolder<T>(10, this);
     }
 
     /**
@@ -42,13 +42,42 @@ public class Car_Transporter extends CargoHolder {
      * Simulates the process of loading on a car to a car transporter.
      * @param car - pushes the car object to the Car_transporters stack.
      */
-    @Override
-    public void loadCar (Car car) {
+    public void loadCar (T car) {
         if (this.getTrailer() == 70) {
-            super.loadCar(car);
+            cargoHolder.loadCar(car);
         }
     }
 
+
+
+    public Car unLoadCar () {
+        if (this.getTrailer() == 70) {
+            return cargoHolder.unLoadCar();
+        }
+        throw new RuntimeException("Trailer was not down >:(");
+    }
+
+    /**
+     * A method that moves the car in the right direction. (modified for you know what!)
+     */
+    @Override
+    public void move(){
+        int currentSpeed = (int) getCurrentSpeed();
+        if (getDir() == 0) {
+            this.setX(this.getX() + currentSpeed);
+        } else if (getDir() == 1) {
+            this.setY(this.getY() + (int) currentSpeed);
+        } else if (getDir() == 2) {
+            this.setX(this.getX() - currentSpeed);
+        } else {
+            this.setY(this.getY() - (int) currentSpeed);
+        }
+        for (Car car : cargoHolder.getCars()) {
+            this.setX(this.getX() + currentSpeed);
+            car.setX(this.getX());
+            car.setY(this.getY());
+        }
+    }
 
     /**
      * A method that returns the speed factor of the car transporter.
@@ -64,5 +93,8 @@ public class Car_Transporter extends CargoHolder {
         if (this.getTrailer() == 0) {
             super.gas(amount);
         }
+    }
+    public Deque<T> getCars(){
+        return cargoHolder.getCars();
     }
 }
