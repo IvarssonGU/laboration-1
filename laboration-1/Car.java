@@ -30,6 +30,14 @@ public abstract class Car implements Movable {
      * @param currentSpeed - The current speed of the car
      * @param color - The color of the car
      * @param modelName - The name of the model
+     * @param x - The x coordinate
+     * @param y - The y coordinate
+     * @param dir - The direction
+     */
+
+
+    /**
+     * A car constructor that subclasses inherits.
      */
     public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
         this.nrDoors = nrDoors;
@@ -106,7 +114,9 @@ public abstract class Car implements Movable {
      *
      * @return - The speedFactor of the car
      */
-    public abstract double speedFactor();
+    public double speedFactor(){
+        return 0.0;
+    }
 
     public int getDir () {
         return dir;
@@ -127,6 +137,10 @@ public abstract class Car implements Movable {
     public int getY(){
         return y;
     }
+
+    public void setX(int newx) { x = newx; }
+
+    public void setY(int newy) { y = newy; }
 
     /**
      * This method increase the car speed with amount speed.
@@ -150,7 +164,6 @@ public abstract class Car implements Movable {
      * @param amount - The amount the method should increase the speed.
      */
 
-    // TODO fix this method according to lab pm
     public void gas(double amount){
         if (0 <= amount && amount <= 1) {
             incrementSpeed(amount);
@@ -162,7 +175,6 @@ public abstract class Car implements Movable {
      *
      * @param amount - The amount to brake with
      */
-    // TODO fix this method according to lab pm
     public void brake(double amount){
         if (0 <= amount && amount <= 1) {
             decrementSpeed(amount);
@@ -205,5 +217,6 @@ public abstract class Car implements Movable {
             dir--;
         }
     }
+
 
 }

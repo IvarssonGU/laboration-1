@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * A class that extends <i>Car</i> and implements the <i>Movable</i> interface.
  */
-public class Volvo240 extends Car {
+public class Volvo240 extends Personal_Car {
 
     /**
      * The trim factor of the car.

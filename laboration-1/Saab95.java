@@ -4,7 +4,7 @@ import java.awt.*;
  * A class that extends <i>Car</i> and implements the <i>Movable</i> interface.
  */
 
-public class Saab95 extends Car implements Movable{
+public class Saab95 extends Personal_Car implements Movable{
     /**
      * A boolean that conveys whether the turbo is on or off.
      */
@@ -15,7 +15,7 @@ public class Saab95 extends Car implements Movable{
      * The only constructor for this class, which is hard-coded to always create a Saab95, as the class-name implies.
      */
     public Saab95(){
-        super(2, 125, 0, Color.red, "Saab95");
+        super(12, 125, 0, Color.red, "Saab95");
         turboOn = false;
         stopEngine();
     }
