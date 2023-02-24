@@ -2,8 +2,10 @@ package Vehicle;
 
 import java.awt.*;
 
-public abstract class Truck extends Car {
+public abstract class Truck extends Car implements IMoveState {
     private int trailerAngle;
+
+    private IMoveState state = new DrivableState(this);
 
     public Truck (int nrDoors, int enginePower, double currentSpeed, Color color, String modelName) {
         super(2, 1200, 0, Color.white, "Vehicle.Scania R730 Streamline");
@@ -18,6 +20,9 @@ public abstract class Truck extends Car {
         if (tmp.equals(0.0) && trailerAngle + amount <= 70){
             trailerAngle+= amount;
         }
+        if (trailerAngle > 0) {
+            this.state = new LockedState(this);
+        }
     }
 
     /**
@@ -28,6 +33,9 @@ public abstract class Truck extends Car {
         if (tmp.equals(0.0) && trailerAngle - amount >= 0) {
             trailerAngle-= amount;
         }
+        if (trailerAngle == 0) {
+            this.state = new DrivableState(this);
+        }
     }
 
     /**
@@ -37,5 +45,10 @@ public abstract class Truck extends Car {
      */
     public int getTrailer() {
         return trailerAngle;
+    }
+
+    @Override
+    public void gas(int amount){
+        state.gas(amount);
     }
 }
