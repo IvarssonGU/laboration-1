@@ -8,7 +8,7 @@ public abstract class Truck extends Car implements IMoveState {
     private IMoveState state = new DrivableState(this);
 
     public Truck (int nrDoors, int enginePower, double currentSpeed, Color color, String modelName) {
-        super(2, 1200, 0, Color.white, "Vehicle.Scania R730 Streamline");
+        super(2, 1200, 0, Color.white, modelName);
         this.trailerAngle = 0;
     }
 

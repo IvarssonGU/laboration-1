@@ -17,7 +17,7 @@ public class Saab95 extends Personal_Car{
      * The only constructor for this class, which is hard-coded to always create a Vehicle.Saab95, as the class-name implies.
      */
     public Saab95(){
-        super(12, 135, 0, Color.red, "Vehicle.Saab95");
+        super(12, 135, 0, Color.red, "Saab95");
         turboOn = false;
         stopEngine();
     }

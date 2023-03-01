@@ -5,7 +5,9 @@ public class CarSim {
     public static void main(String[] args) {
         CarModel cm = new CarModel();
         DrawPanel dp = new DrawPanel(frameWidth, frameHeight - 240);
+        SpeedPanel sp = new SpeedPanel(dp);
         CarController cc = new CarController("CarSim 1.0", cm, dp);
+        cm.addObserver(sp);
         cm.addObserver(dp);
     }
 }

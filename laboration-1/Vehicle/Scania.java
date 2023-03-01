@@ -10,7 +10,7 @@ public class Scania extends Truck {
      * The only constructor for this class, which is hard-coded to always create a Vehicle.Scania, as the class-name implies.
      */
     public Scania(){
-        super(2, 1200, 0, Color.white, "Vehicle.Scania R730 Streamline");
+        super(2, 1200, 0, Color.white, "Scania R730");
         stopEngine();
     }
 
