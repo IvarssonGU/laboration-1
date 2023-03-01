@@ -22,6 +22,8 @@ public class CarController extends JFrame {
 
     DrawPanel drawPanel;// = new DrawPanel(X, Y-240);
 
+    SpeedPanel speedPanel;
+
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -42,9 +44,10 @@ public class CarController extends JFrame {
     JButton removeCar = new JButton("Remove a Car");
 
     // Constructor
-    public CarController(String framename, CarModel cm, DrawPanel dp){
+    public CarController(String framename, CarModel cm, DrawPanel dp, SpeedPanel sp){
         this.drawPanel = dp;
         this.cm = cm;
+        this.speedPanel = sp;
         initComponents(framename);
     }
 
@@ -58,6 +61,7 @@ public class CarController extends JFrame {
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         this.add(drawPanel);
+        this.add(speedPanel);
 
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
@@ -75,6 +79,7 @@ public class CarController extends JFrame {
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
+        
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,5));
@@ -90,7 +95,7 @@ public class CarController extends JFrame {
         controlPanel.add(lowerBedButton, 7);
         controlPanel.add(stopButton, 8);
         controlPanel.add(removeCar, 9);
-        controlPanel.setPreferredSize(new Dimension((X-100), 200));
+        controlPanel.setPreferredSize(new Dimension((X-250), 240));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 

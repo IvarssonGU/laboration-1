@@ -27,9 +27,9 @@ public class CompositeCar {
 
     public void wallCollision() {
         for (Car c : cars) {
-            if (c.getY() > CarSim.frameHeight - 240 - 60) {
+            if (c.getY() > CarSim.frameHeight - 280 - 60) {
                 turnAround(c);
-                c.setY(CarSim.frameHeight - 300);
+                c.setY(CarSim.frameHeight - 340);
             } else if (c.getY() < 0) {
                 turnAround(c);
                 c.setY(0);
