@@ -51,9 +51,10 @@ public abstract class Car implements Movable {
         y = 0;
     }
 
-    public Car(int x, int y,int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
+    public Car(int x, int y, int nrDoors, double enginePower, double currentSpeed, int dir, Color color, String modelName) {
         this.x = x;
         this.y = y;
+        this.dir = dir;
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -98,7 +99,8 @@ public abstract class Car implements Movable {
      * @return - The color of the car
      */
     public Color getColor(){
-        return color;
+        Color newColor = color;
+        return newColor;
     }
 
     /**

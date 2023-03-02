@@ -1,4 +1,6 @@
 import Vehicle.Car;
+import Vehicle.ImmutableCar;
+
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import java.util.List;
 
 public class SpeedPanel extends JPanel implements ModelObserver {
     JPanel tmpTest;
-    List<Car> cars = new ArrayList<>();
+    List<ImmutableCar> cars = new ArrayList<>();
 
     public SpeedPanel(int x, int y){
         tmpTest = new JPanel();
@@ -24,7 +26,7 @@ public class SpeedPanel extends JPanel implements ModelObserver {
         }
     }
 
-    public void actOnModelChange (ArrayList<Car> cars) {
+    public void actOnModelChange (ArrayList<ImmutableCar> cars) {
         this.cars = new ArrayList<>(cars);
         repaint();
     }

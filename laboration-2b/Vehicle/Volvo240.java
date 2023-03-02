@@ -20,6 +20,11 @@ public class Volvo240 extends Personal_Car {
         stopEngine();
     }
 
+    public Volvo240(Volvo240 car){
+        super(2, 90, 0, Color.blue, "Volvo240");
+        stopEngine();
+    }
+
 
     @Override
     public double speedFactor(){

@@ -1,9 +1,10 @@
 package Vehicle;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
-public class VehicleFactory {
+public abstract class VehicleFactory {
     public static Car createVolvo240 () {
         return new Volvo240();
     }
@@ -57,5 +58,38 @@ public class VehicleFactory {
             tmp.turnLeft();
 
         }
+    }
+
+    /* public <T extends Car > copyCar (T car) {
+        int x = car.getX();
+        int y = car.getY();
+        double cs = car.getCurrentSpeed();
+        int dir = car.getDir();
+        String modelname = car.getModelName();
+        if (Objects.equals(modelname, "Volvo240")) {
+            return new Car.T(car);
+            //return new Volvo240(x, y, cs, dir);
+        } else if (Objects.equals(modelname, "Saab95")){
+            //return new Saab95(x, y, cs, dir);
+        }
+    } */
+
+    /*public static Car newMovedCar (Car car) {
+        int x = car.getX();
+        int y = car.getY();
+        if (car.getDir()  == 0) {
+            y += (int) car.getCurrentSpeed();
+        } else if (car.getDir() == 1) {
+            x -= (int) car.getCurrentSpeed();
+        } else if (car.getDir()  == 2) {
+            y -= (int) car.getCurrentSpeed();
+        } else {
+            x += (int) car.getCurrentSpeed();
+        }
+        return new Saab95(x, y, car.getCurrentSpeed(), car.getDir());
+    }*/
+
+    public static Volvo240 updatedCar (Volvo240 car) {
+        return new Volvo240(car);
     }
 }

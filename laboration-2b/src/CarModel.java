@@ -24,13 +24,6 @@ public class CarModel {
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
-    // The frame that represents this instance View of the MVC pattern
-    //CarController frame;
-    // A list of cars, modify if needed
-    //ArrayList<Car> cars = new ArrayList<>(10);
-
-    //methods:
-
     public CarModel () {
         this.c = new CompositeCar();
         this.c.addAll(VehicleFactory.createCarList());
@@ -55,9 +48,18 @@ public class CarModel {
     }
 
     private void multicastStatusChange(List<Car> newStatus){
-        for (ModelObserver observer : observers){
-            observer.actOnModelChange((ArrayList<Car>) newStatus);
+        ArrayList<ImmutableCar> immutableCars = copyCars(newStatus);
+        for (ModelObserver observer : observers) {
+            observer.actOnModelChange(immutableCars); // new copy of carList, for immutability
         }
+    }
+
+    private ArrayList<ImmutableCar> copyCars(List<Car> cars) {
+        ArrayList<ImmutableCar> immutableCars = new ArrayList<>(cars.size());
+        for (Car  c : cars) {
+            immutableCars.add(new ImmutableCar(c));
+        }
+        return immutableCars;
     }
 
     // Calls the gas method for each car once
